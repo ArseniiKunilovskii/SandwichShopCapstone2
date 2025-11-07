@@ -20,6 +20,10 @@ public class Order {
     public Order() {
     }
 
+    public void addItem(Item item){
+        items.add(item);
+    }
+
     public int getId() {
         return id;
     }
