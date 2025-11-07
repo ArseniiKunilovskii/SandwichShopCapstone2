@@ -33,4 +33,23 @@ public class UtilityMethods {
         scanner.nextLine();
         return i;
     }
+
+    public enum breadType{
+        White, Wheat, Rye, Wrap
+    }
+    public enum meatType{
+        Steak, Ham, Salami, RoastBeef, Chicken, Bacon
+    }
+    public enum cheeseType{
+        American, Provolone, Cheddar, Swiss
+    }
+    public enum regularToppingsType{
+        lettuce, peppers , onions, tomatoes, jalapeños, cucumbers, pickles, guacamole, mushrooms
+    }
+    public enum saucesType{
+        mayo, mustard, ketchup, ranch, thousand_islands, vinaigrette
+    }
+    public enum sides{
+        au_jus, sauce
+    }
 }
