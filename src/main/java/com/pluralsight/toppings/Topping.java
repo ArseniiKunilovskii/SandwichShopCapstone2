@@ -1,4 +1,4 @@
-package com.pluralsight.items;
+package com.pluralsight.toppings;
 
 public abstract class Topping {
     private boolean isExtra;

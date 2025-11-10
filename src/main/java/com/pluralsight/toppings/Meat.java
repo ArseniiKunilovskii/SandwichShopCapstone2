@@ -1,8 +1,8 @@
-package com.pluralsight.items;
+package com.pluralsight.toppings;
 
 import com.pluralsight.utilitlyMethods.UtilityMethods;
 
-public class Meat extends Topping{
+public class Meat extends Topping {
     private UtilityMethods.meatType meatType;
 
     public Meat(boolean isExtra ,UtilityMethods.meatType meatType) {
