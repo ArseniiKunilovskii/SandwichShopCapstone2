@@ -52,4 +52,10 @@ public class UtilityMethods {
     public enum sides{
         au_jus, sauce
     }
+    public enum drinkType{
+        Coca_Cola, DrPepper, Sprite, Pepsi, Diet_Coke, Mountain_Dew, Coke_Zero, Diet_Pepsi, Fanta, Ginger_Ale
+    }
+    public enum chipsType{
+        Lays, Doritos, Cheetos
+    }
 }
