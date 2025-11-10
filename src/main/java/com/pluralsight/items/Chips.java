@@ -1,24 +1,24 @@
 package com.pluralsight.items;
 
-import com.pluralsight.utilitlyMethods.UtilityMethods;
+import com.pluralsight.utilitlyMethods.ToppingMethods;
 
 public class Chips extends Item{
-    private UtilityMethods.chipsType chipsType;
+    private ToppingMethods.ChipsType chipsType;
 
-    public Chips(int amount, UtilityMethods.chipsType chipsType) {
+    public Chips(int amount, ToppingMethods.ChipsType chipsType) {
         super(amount);
         this.chipsType = chipsType;
     }
 
-    public Chips(UtilityMethods.chipsType chipsType) {
+    public Chips(ToppingMethods.ChipsType chipsType) {
         this.chipsType = chipsType;
     }
 
-    public UtilityMethods.chipsType getChipsType() {
+    public ToppingMethods.ChipsType getChipsType() {
         return chipsType;
     }
 
-    public void setChipsType(UtilityMethods.chipsType chipsType) {
+    public void setChipsType(ToppingMethods.ChipsType chipsType) {
         this.chipsType = chipsType;
     }
 

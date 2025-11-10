@@ -3,24 +3,22 @@ package com.pluralsight.userInterface;
 import com.pluralsight.items.Chips;
 import com.pluralsight.items.Drink;
 import com.pluralsight.items.Item;
+import com.pluralsight.toppings.Topping;
+import com.pluralsight.utilitlyMethods.CustomSandwichMethods;
+import com.pluralsight.utilitlyMethods.ToppingMethods;
 import com.pluralsight.utilitlyMethods.UtilityMethods;
+
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
-    private Order order;
+    private Order order = new Order();;
     private Scanner scanner;
     private UtilityMethods utilityMethods;
 
     public void display(){
         String choice;
         boolean quit = false;
-
-        System.out.println("Hello! Would you like to make an order?(Yes/No)");
-        if (!utilityMethods.getYesOrNo()){
-            quit = true;
-        }else {
-            order = new Order();
-        }
 
         while (!quit){
             System.out.println("What do you want to Order?");
@@ -54,8 +52,6 @@ public class UserInterface {
                     break;
             }
         }
-
-        System.out.println("Thank you for visit! Come back!");
     }
     public Item getSandwich() {
         int choice = -1;
@@ -64,7 +60,7 @@ public class UserInterface {
         System.out.println("2. Standard Sandwich");
         System.out.println("0. Cancel");
 
-        while (choice != 1 || choice != 2 || choice != 0){
+        while (choice<0||choice>2){
             choice = utilityMethods.getInt();
         }
 
@@ -83,21 +79,21 @@ public class UserInterface {
     public Item getChips(){
         int choice = -1;
         int amount = 0;
-        UtilityMethods.chipsType type = null;
+        ToppingMethods.ChipsType type = null;
         System.out.println("What type of chips do you want?(1,2,3 or 0");
         System.out.println("1. Lays");
         System.out.println("2. Doritos");
         System.out.println("3. Cheetos");
         System.out.println("0. Exit");
 
-        while (choice != 3 || choice != 1 || choice != 2 || choice != 0){
+        while (choice<0||choice>3){
             choice = utilityMethods.getInt();
         }
 
         type = switch (choice) {
-            case 1 -> UtilityMethods.chipsType.Lays;
-            case 2 -> UtilityMethods.chipsType.Doritos;
-            case 3 -> UtilityMethods.chipsType.Cheetos;
+            case 1 -> ToppingMethods.ChipsType.Lays;
+            case 2 -> ToppingMethods.ChipsType.Doritos;
+            case 3 -> ToppingMethods.ChipsType.Cheetos;
             default -> type;
         };
         System.out.println("How many chips " + type + " do you want?");
@@ -112,7 +108,7 @@ public class UserInterface {
         int choice = -1;
         int amount = 0;
         String size = "";
-        UtilityMethods.drinkType type = null;
+        ToppingMethods.DrinkType type = null;
         System.out.println("What type of drink do you want?(1-10 or 0");
         System.out.println("1. Coca-Cola");
         System.out.println("2. DrPepper");
@@ -131,16 +127,16 @@ public class UserInterface {
         }
 
         type = switch (choice) {
-            case 1 -> UtilityMethods.drinkType.Coca_Cola;
-            case 2 -> UtilityMethods.drinkType.DrPepper;
-            case 3 -> UtilityMethods.drinkType.Sprite;
-            case 4 -> UtilityMethods.drinkType.Pepsi;
-            case 5 -> UtilityMethods.drinkType.Diet_Coke;
-            case 6 -> UtilityMethods.drinkType.Mountain_Dew;
-            case 7 -> UtilityMethods.drinkType.Coke_Zero;
-            case 8 -> UtilityMethods.drinkType.Diet_Pepsi;
-            case 9 -> UtilityMethods.drinkType.Fanta;
-            case 10 -> UtilityMethods.drinkType.Ginger_Ale;
+            case 1 -> ToppingMethods.DrinkType.Coca_Cola;
+            case 2 -> ToppingMethods.DrinkType.DrPepper;
+            case 3 -> ToppingMethods.DrinkType.Sprite;
+            case 4 -> ToppingMethods.DrinkType.Pepsi;
+            case 5 -> ToppingMethods.DrinkType.Diet_Coke;
+            case 6 -> ToppingMethods.DrinkType.Mountain_Dew;
+            case 7 -> ToppingMethods.DrinkType.Coke_Zero;
+            case 8 -> ToppingMethods.DrinkType.Diet_Pepsi;
+            case 9 -> ToppingMethods.DrinkType.Fanta;
+            case 10 -> ToppingMethods.DrinkType.Ginger_Ale;
             default -> type;
         };
 
@@ -150,17 +146,22 @@ public class UserInterface {
         System.out.println("1. Small");
         System.out.println("2. Medium");
         System.out.println("3. Large");
+        System.out.println("0. Exit");
 
-        while (choice<=0||choice>3){
+        while (choice<0||choice>3){
             choice = utilityMethods.getInt();
         }
         size = switch (choice){
-            case 1 -> "Small";
-            case 2 -> "Medium";
-            case 3 -> "Large";
+            case 1 -> "small";
+            case 2 -> "medium";
+            case 3 -> "large";
             default -> "";
         };
-        System.out.println("How many " + type + " do you want?");
+        if (choice==0){
+            return null;
+        }
+
+        System.out.println("How many " +size + " "+ type + " do you want?");
         System.out.println("Please enter any positive amount");
         while (amount<=0){
             amount = utilityMethods.getInt();
@@ -173,8 +174,28 @@ public class UserInterface {
     }
 
     public Item getCustomSandwich(){
+        int amount = 0;
+        int size = 0;
+        ToppingMethods.BreadType breadType;
+        ArrayList<Topping> toppings;
+        boolean isToasted = false;
+
+        size = CustomSandwichMethods.getSize();
+        if(size == 0){
+            return null;
+        }
+        breadType = CustomSandwichMethods.getBreadType();
+        if (breadType == null){
+            return null;
+        }
+        toppings = CustomSandwichMethods.getToppings();
+
+
 
     }
+
+
+
     public void cancelOrder(){
 
     }

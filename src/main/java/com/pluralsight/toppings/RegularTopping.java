@@ -1,11 +1,11 @@
 package com.pluralsight.toppings;
 
-import com.pluralsight.utilitlyMethods.UtilityMethods;
+import com.pluralsight.utilitlyMethods.ToppingMethods;
 
 public class RegularTopping extends Topping {
-    private UtilityMethods.regularToppingsType regularToppingsType;
+    private ToppingMethods.RegularToppingsType regularToppingsType;
 
-    public RegularTopping(boolean isExtra, UtilityMethods.regularToppingsType regularToppingsType) {
+    public RegularTopping(boolean isExtra, ToppingMethods.RegularToppingsType regularToppingsType) {
         super(isExtra);
         this.regularToppingsType = regularToppingsType;
     }
@@ -15,11 +15,11 @@ public class RegularTopping extends Topping {
         return 0;
     }
 
-    public UtilityMethods.regularToppingsType getRegularToppingsType() {
+    public ToppingMethods.RegularToppingsType getRegularToppingsType() {
         return regularToppingsType;
     }
 
-    public void setRegularToppingsType(UtilityMethods.regularToppingsType regularToppingsType) {
+    public void setRegularToppingsType(ToppingMethods.RegularToppingsType regularToppingsType) {
         this.regularToppingsType = regularToppingsType;
     }
 }

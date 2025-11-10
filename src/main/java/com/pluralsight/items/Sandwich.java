@@ -1,18 +1,18 @@
 package com.pluralsight.items;
 
 import com.pluralsight.toppings.Topping;
-import com.pluralsight.utilitlyMethods.UtilityMethods;
+import com.pluralsight.utilitlyMethods.ToppingMethods;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class Sandwich extends Item {
     private int size;
-    private UtilityMethods.breadType breadType;
+    private ToppingMethods.BreadType breadType;
     private ArrayList<Topping> toppings;
     private boolean isToasted;
 
-    public Sandwich(int amount, int size, UtilityMethods.breadType breadType, ArrayList<Topping> toppings, boolean isToasted) {
+    public Sandwich(int amount, int size, ToppingMethods.BreadType breadType, ArrayList<Topping> toppings, boolean isToasted) {
         super(amount);
         this.size = size;
         this.breadType = breadType;

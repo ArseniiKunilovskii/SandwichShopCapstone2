@@ -1,18 +1,18 @@
 package com.pluralsight.items;
 
-import com.pluralsight.utilitlyMethods.UtilityMethods;
+import com.pluralsight.utilitlyMethods.ToppingMethods;
 
 public class Drink extends Item{
     private String size;
-    private UtilityMethods.drinkType drinkType;
+    private ToppingMethods.DrinkType drinkType;
 
-    public Drink(int amount, String size, UtilityMethods.drinkType drinkType) {
+    public Drink(int amount, String size, ToppingMethods.DrinkType drinkType) {
         super(amount);
         this.size = size;
         this.drinkType = drinkType;
     }
 
-    public Drink(String size, UtilityMethods.drinkType drinkType) {
+    public Drink(String size, ToppingMethods.DrinkType drinkType) {
         this.size = size;
         this.drinkType = drinkType;
     }
@@ -40,11 +40,11 @@ public class Drink extends Item{
         this.size = size;
     }
 
-    public UtilityMethods.drinkType getDrinkType() {
+    public ToppingMethods.DrinkType getDrinkType() {
         return drinkType;
     }
 
-    public void setDrinkType(UtilityMethods.drinkType drinkType) {
+    public void setDrinkType(ToppingMethods.DrinkType drinkType) {
         this.drinkType = drinkType;
     }
 }

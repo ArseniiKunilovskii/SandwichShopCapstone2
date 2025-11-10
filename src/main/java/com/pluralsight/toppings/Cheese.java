@@ -1,11 +1,11 @@
 package com.pluralsight.toppings;
 
-import com.pluralsight.utilitlyMethods.UtilityMethods;
+import com.pluralsight.utilitlyMethods.ToppingMethods;
 
 public class Cheese extends Topping{
-    private UtilityMethods.cheeseType cheeseType;
+    private ToppingMethods.CheeseType cheeseType;
 
-    public Cheese(boolean isExtra, UtilityMethods.cheeseType cheeseType) {
+    public Cheese(boolean isExtra, ToppingMethods.CheeseType cheeseType) {
         super(isExtra);
         this.cheeseType = cheeseType;
     }
@@ -41,11 +41,11 @@ public class Cheese extends Topping{
         return 0;
     }
 
-    public UtilityMethods.cheeseType getCheeseType() {
+    public ToppingMethods.CheeseType getCheeseType() {
         return cheeseType;
     }
 
-    public void setCheeseType(UtilityMethods.cheeseType cheeseType) {
+    public void setCheeseType(ToppingMethods.CheeseType cheeseType) {
         this.cheeseType = cheeseType;
     }
 }

@@ -1,20 +1,20 @@
 package com.pluralsight.toppings;
 
-import com.pluralsight.utilitlyMethods.UtilityMethods;
+import com.pluralsight.utilitlyMethods.ToppingMethods;
 
 public class Sauce extends Topping{
-    private UtilityMethods.saucesType saucesType;
+    private ToppingMethods.SaucesType saucesType;
 
-    public Sauce(boolean isExtra, UtilityMethods.saucesType saucesType) {
+    public Sauce(boolean isExtra, ToppingMethods.SaucesType saucesType) {
         super(isExtra);
         this.saucesType = saucesType;
     }
 
-    public UtilityMethods.saucesType getSaucesType() {
+    public ToppingMethods.SaucesType getSaucesType() {
         return saucesType;
     }
 
-    public void setSaucesType(UtilityMethods.saucesType saucesType) {
+    public void setSaucesType(ToppingMethods.SaucesType saucesType) {
         this.saucesType = saucesType;
     }
 

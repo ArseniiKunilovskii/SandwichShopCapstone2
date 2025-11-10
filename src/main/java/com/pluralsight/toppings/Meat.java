@@ -1,20 +1,20 @@
 package com.pluralsight.toppings;
 
-import com.pluralsight.utilitlyMethods.UtilityMethods;
+import com.pluralsight.utilitlyMethods.ToppingMethods;
 
 public class Meat extends Topping {
-    private UtilityMethods.meatType meatType;
+    private ToppingMethods.MeatType meatType;
 
-    public Meat(boolean isExtra ,UtilityMethods.meatType meatType) {
+    public Meat(boolean isExtra , ToppingMethods.MeatType meatType) {
         super(isExtra);
         this.meatType = meatType;
     }
 
-    public UtilityMethods.meatType getMeatType() {
+    public ToppingMethods.MeatType getMeatType() {
         return meatType;
     }
 
-    public void setMeatType(UtilityMethods.meatType meatType) {
+    public void setMeatType(ToppingMethods.MeatType meatType) {
         this.meatType = meatType;
     }
 

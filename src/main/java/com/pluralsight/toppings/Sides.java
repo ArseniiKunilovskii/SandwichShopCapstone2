@@ -1,11 +1,11 @@
 package com.pluralsight.toppings;
 
-import com.pluralsight.utilitlyMethods.UtilityMethods;
+import com.pluralsight.utilitlyMethods.ToppingMethods;
 
 public class Sides extends Topping{
-    private UtilityMethods.sides sides;
+    private ToppingMethods.Sides sides;
 
-    public Sides(boolean isExtra, UtilityMethods.sides sides) {
+    public Sides(boolean isExtra, ToppingMethods.Sides sides) {
         super(isExtra);
         this.sides = sides;
     }
@@ -15,11 +15,11 @@ public class Sides extends Topping{
         return 0;
     }
 
-    public UtilityMethods.sides getSides() {
+    public ToppingMethods.Sides getSides() {
         return sides;
     }
 
-    public void setSides(UtilityMethods.sides sides) {
+    public void setSides(ToppingMethods.Sides sides) {
         this.sides = sides;
     }
 }
