@@ -1,5 +1,7 @@
 package com.pluralsight.userInterface;
 
+import com.pluralsight.items.Chips;
+import com.pluralsight.items.Drink;
 import com.pluralsight.items.Item;
 import com.pluralsight.utilitlyMethods.UtilityMethods;
 import java.util.Scanner;
@@ -45,6 +47,7 @@ public class UserInterface {
                     break;
                 case "0":
                     cancelOrder();
+                    quit = true;
                     break;
                 default:
                     System.out.println("Please enter only numbers 0-4");
@@ -56,7 +59,7 @@ public class UserInterface {
     }
     public Item getSandwich() {
         int choice = -1;
-        System.out.println("What type of sandwich do you want? (Standard or Custom)");
+        System.out.println("What type of sandwich do you want? (1 or 2)");
         System.out.println("1. Custom Sandwich");
         System.out.println("2. Standard Sandwich");
         System.out.println("0. Cancel");
@@ -78,10 +81,91 @@ public class UserInterface {
         return null;
     }
     public Item getChips(){
+        int choice = -1;
+        int amount = 0;
+        UtilityMethods.chipsType type = null;
+        System.out.println("What type of chips do you want?(1,2,3 or 0");
+        System.out.println("1. Lays");
+        System.out.println("2. Doritos");
+        System.out.println("3. Cheetos");
+        System.out.println("0. Exit");
+
+        while (choice != 3 || choice != 1 || choice != 2 || choice != 0){
+            choice = utilityMethods.getInt();
+        }
+
+        type = switch (choice) {
+            case 1 -> UtilityMethods.chipsType.Lays;
+            case 2 -> UtilityMethods.chipsType.Doritos;
+            case 3 -> UtilityMethods.chipsType.Cheetos;
+            default -> type;
+        };
+        System.out.println("How many chips " + type + " do you want?");
+        System.out.println("Please enter any positive amount");
+        while (amount<=0){
+            amount = utilityMethods.getInt();
+        }
+        return new Chips(amount,type);
 
     }
     public Item getDrink(){
+        int choice = -1;
+        int amount = 0;
+        String size = "";
+        UtilityMethods.drinkType type = null;
+        System.out.println("What type of drink do you want?(1-10 or 0");
+        System.out.println("1. Coca-Cola");
+        System.out.println("2. DrPepper");
+        System.out.println("3. Sprite");
+        System.out.println("4. Pepsi");
+        System.out.println("5. Diet-Coke");
+        System.out.println("6. Mountain Dew");
+        System.out.println("7. Coke-Zero");
+        System.out.println("8. Diet Pepsi");
+        System.out.println("9. Fanta");
+        System.out.println("10. Ginger_Ale");
+        System.out.println("0. Exit");
 
+        while (choice>10 || choice<0){
+            choice = utilityMethods.getInt();
+        }
+
+        type = switch (choice) {
+            case 1 -> UtilityMethods.drinkType.Coca_Cola;
+            case 2 -> UtilityMethods.drinkType.DrPepper;
+            case 3 -> UtilityMethods.drinkType.Sprite;
+            case 4 -> UtilityMethods.drinkType.Pepsi;
+            case 5 -> UtilityMethods.drinkType.Diet_Coke;
+            case 6 -> UtilityMethods.drinkType.Mountain_Dew;
+            case 7 -> UtilityMethods.drinkType.Coke_Zero;
+            case 8 -> UtilityMethods.drinkType.Diet_Pepsi;
+            case 9 -> UtilityMethods.drinkType.Fanta;
+            case 10 -> UtilityMethods.drinkType.Ginger_Ale;
+            default -> type;
+        };
+
+        choice = -1;
+
+        System.out.println("What size of your " + type + " do you want?");
+        System.out.println("1. Small");
+        System.out.println("2. Medium");
+        System.out.println("3. Large");
+
+        while (choice<=0||choice>3){
+            choice = utilityMethods.getInt();
+        }
+        size = switch (choice){
+            case 1 -> "Small";
+            case 2 -> "Medium";
+            case 3 -> "Large";
+            default -> "";
+        };
+        System.out.println("How many " + type + " do you want?");
+        System.out.println("Please enter any positive amount");
+        while (amount<=0){
+            amount = utilityMethods.getInt();
+        }
+        return new Drink(amount,size,type);
     }
 
     public Item getStandardSandwich(){
