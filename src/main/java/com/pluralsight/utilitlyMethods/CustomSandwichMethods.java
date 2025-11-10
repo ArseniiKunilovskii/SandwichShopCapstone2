@@ -1,6 +1,6 @@
 package com.pluralsight.utilitlyMethods;
 
-import com.pluralsight.toppings.Topping;
+import com.pluralsight.toppings.*;
 
 import java.util.ArrayList;
 
@@ -55,7 +55,57 @@ public class CustomSandwichMethods {
         return breadType;
     }
     public static ArrayList<Topping> getToppings(){
+        boolean choice = true;
+        ArrayList<Topping> toppings = new ArrayList<>();
+        boolean isExtra = false;
 
+        System.out.println("Do you want to add meat?(yes or no)");
+        choice = utilityMethods.getYesOrNo();
+        if(choice) {
+            ToppingMethods.MeatType meatType = ToppingMethods.getMeatType();
+            isExtra = ToppingMethods.getExtra(String.valueOf(meatType));
+            toppings.add(new Meat(isExtra, meatType));
+        }
 
+        System.out.println("Do you want to add cheese?(yes or no)");
+        choice = utilityMethods.getYesOrNo();
+        if(choice) {
+            ToppingMethods.CheeseType cheeseType = ToppingMethods.getCheeseType();
+            isExtra = ToppingMethods.getExtra(String.valueOf(cheeseType));
+            toppings.add(new Cheese(isExtra, cheeseType));
+        }
+
+        while (choice) {
+            System.out.println("Do you want to add vegetable?(yes or no)");
+            choice = utilityMethods.getYesOrNo();
+            if (choice) {
+                ToppingMethods.RegularToppingsType regularToppingsType = ToppingMethods.getRegularToppingsType();
+                isExtra = ToppingMethods.getExtra(String.valueOf(regularToppingsType));
+                toppings.add(new RegularTopping(isExtra, regularToppingsType));
+            }
+        }
+
+        System.out.println("Do you want to add sauce?(yes or no)");
+        choice = utilityMethods.getYesOrNo();
+        if(choice) {
+            ToppingMethods.SaucesType sauces = ToppingMethods.getSaucesType();
+            isExtra = ToppingMethods.getExtra(String.valueOf(sauces));
+            toppings.add(new Sauce(isExtra, sauces));
+        }
+
+        System.out.println("Do you want to add meat?(yes or no)");
+        choice = utilityMethods.getYesOrNo();
+        if(choice) {
+            ToppingMethods.Sides sides = ToppingMethods.getSides();
+            isExtra = ToppingMethods.getExtra(String.valueOf(sides));
+            toppings.add(new Sides(isExtra, sides));
+        }
+
+        return toppings;
+    }
+
+    public boolean getToastedChoice(){
+        System.out.println("Do you want your sandwich to be toasted?(yes or no)");
+        return utilityMethods.getYesOrNo();
     }
 }

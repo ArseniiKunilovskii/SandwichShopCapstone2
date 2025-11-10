@@ -1,11 +1,13 @@
 package com.pluralsight.utilitlyMethods;
 
+import com.pluralsight.toppings.Topping;
+
 import static com.pluralsight.utilitlyMethods.CustomSandwichMethods.utilityMethods;
 
 public class ToppingMethods {
 
-    public MeatType getMeatType(){
-        int choice = 0;
+    public static MeatType getMeatType(){
+        int choice = -1;
         MeatType meatType;
 
         System.out.println("What type of meat do you want?");
@@ -31,8 +33,9 @@ public class ToppingMethods {
 
         return meatType;
     }
-    public CheeseType getCheeseType(){
-        int choice = 0;
+
+    public static CheeseType getCheeseType(){
+        int choice = -1;
         CheeseType cheeseType;
 
         System.out.println("What type of Cheese do you want?");
@@ -54,11 +57,12 @@ public class ToppingMethods {
 
         return cheeseType;
     }
-    public RegularToppingsType getRegularToppingsType(){
-        int choice = 0;
+
+    public static RegularToppingsType getRegularToppingsType(){
+        int choice = -1;
         RegularToppingsType regularToppingsType;
 
-        System.out.println("What type of Cheese do you want?");
+        System.out.println("What type of vegetable do you want?");
         System.out.println("1. lettuce");
         System.out.println("2. peppers");
         System.out.println("3. onions");
@@ -69,7 +73,7 @@ public class ToppingMethods {
         System.out.println("8. guacamole");
         System.out.println("9. mushrooms");
 
-        while (choice<0||choice>4){
+        while (choice<0||choice>9){
             choice = utilityMethods.getInt();
         }
         regularToppingsType = switch (choice){
@@ -88,6 +92,58 @@ public class ToppingMethods {
         return regularToppingsType;
     }
 
+    public static SaucesType getSaucesType(){
+        int choice = -1;
+        SaucesType saucesType;
+
+        System.out.println("What type of sauce do you want?");
+        System.out.println("1. mayo");
+        System.out.println("2. mustard");
+        System.out.println("3. ketchup");
+        System.out.println("4. ranch");
+        System.out.println("5. thousand_islands");
+        System.out.println("6. vinaigrette");
+
+        while (choice<0||choice>6){
+            choice = utilityMethods.getInt();
+        }
+        saucesType = switch (choice){
+            case 1 -> SaucesType.mayo;
+            case 2 -> SaucesType.mustard;
+            case 3 -> SaucesType.ketchup;
+            case 4 -> SaucesType.ranch;
+            case 5 -> SaucesType.thousand_islands;
+            case 6 -> SaucesType.vinaigrette;
+            default -> throw new IllegalStateException("Unexpected value: " + choice);
+        };
+
+        return saucesType;
+    }
+
+    public static Sides getSides(){
+        int choice = -1;
+        Sides sides;
+
+        System.out.println("What type of sauce do you want?");
+        System.out.println("1. mayo");
+        System.out.println("2. mustard");
+
+        while (choice<0||choice>2){
+            choice = utilityMethods.getInt();
+        }
+        sides = switch (choice){
+            case 1 -> Sides.au_jus;
+            case 2 -> Sides.sauce;
+
+            default -> throw new IllegalStateException("Unexpected value: " + choice);
+        };
+
+        return sides;
+    }
+    public static boolean getExtra(String topping){
+        System.out.println("Do you want extra " + topping+"? (yes or no)");
+        return utilityMethods.getYesOrNo();
+    }
 
     public enum BreadType {
         White, Wheat, Rye, Wrap
