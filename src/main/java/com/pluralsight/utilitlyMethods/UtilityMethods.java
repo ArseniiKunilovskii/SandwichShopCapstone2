@@ -3,7 +3,7 @@ package com.pluralsight.utilitlyMethods;
 import java.util.Scanner;
 
 public class UtilityMethods {
-    private Scanner scanner;
+    private final Scanner scanner;
 
     public UtilityMethods(){
         scanner = new Scanner(System.in);

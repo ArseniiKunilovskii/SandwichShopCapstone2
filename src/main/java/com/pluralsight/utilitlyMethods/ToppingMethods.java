@@ -2,15 +2,18 @@ package com.pluralsight.utilitlyMethods;
 
 import com.pluralsight.toppings.Topping;
 
-import static com.pluralsight.utilitlyMethods.CustomSandwichMethods.utilityMethods;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class ToppingMethods {
+
+    private static final UtilityMethods utilityMethods = new UtilityMethods();
 
     public static MeatType getMeatType(){
         int choice = -1;
         MeatType meatType;
 
-        System.out.println("What type of meat do you want?");
+        System.out.println("\nWhat type of meat do you want?");
         System.out.println("1. Steak");
         System.out.println("2. Ham");
         System.out.println("3. Salami");
@@ -38,7 +41,7 @@ public class ToppingMethods {
         int choice = -1;
         CheeseType cheeseType;
 
-        System.out.println("What type of Cheese do you want?");
+        System.out.println("\nWhat type of Cheese do you want?");
         System.out.println("1. American");
         System.out.println("2. Provolone");
         System.out.println("3. Cheddar");
@@ -62,7 +65,7 @@ public class ToppingMethods {
         int choice = -1;
         RegularToppingsType regularToppingsType;
 
-        System.out.println("What type of vegetable do you want?");
+        System.out.println("\nWhat type of vegetable do you want?");
         System.out.println("1. lettuce");
         System.out.println("2. peppers");
         System.out.println("3. onions");
@@ -81,7 +84,7 @@ public class ToppingMethods {
             case 2 -> RegularToppingsType.peppers;
             case 3 -> RegularToppingsType.onions;
             case 4 -> RegularToppingsType.tomatoes;
-            case 5 -> RegularToppingsType.jalapeños;
+            case 5 -> RegularToppingsType.jalapenos;
             case 6 -> RegularToppingsType.cucumbers;
             case 7 -> RegularToppingsType.pickles;
             case 8 -> RegularToppingsType.guacamole;
@@ -96,12 +99,12 @@ public class ToppingMethods {
         int choice = -1;
         SaucesType saucesType;
 
-        System.out.println("What type of sauce do you want?");
+        System.out.println("\nWhat type of sauce do you want?");
         System.out.println("1. mayo");
         System.out.println("2. mustard");
         System.out.println("3. ketchup");
         System.out.println("4. ranch");
-        System.out.println("5. thousand_islands");
+        System.out.println("5. thousand islands");
         System.out.println("6. vinaigrette");
 
         while (choice<0||choice>6){
@@ -124,9 +127,9 @@ public class ToppingMethods {
         int choice = -1;
         Sides sides;
 
-        System.out.println("What type of sauce do you want?");
-        System.out.println("1. mayo");
-        System.out.println("2. mustard");
+        System.out.println("\nWhat type of sauce do you want?");
+        System.out.println("1. au jus");
+        System.out.println("2. sauce");
 
         while (choice<0||choice>2){
             choice = utilityMethods.getInt();
@@ -145,6 +148,11 @@ public class ToppingMethods {
         return utilityMethods.getYesOrNo();
     }
 
+    public static double getTotalToppingPrice(ArrayList<Topping> toppings, int size){
+        ArrayList<Double> prices = toppings.stream().map(topping -> topping.getPrice(size)).collect(Collectors.toCollection(ArrayList::new));
+        return prices.stream().reduce(0.0, Double::sum);
+    }
+
     public enum BreadType {
         White, Wheat, Rye, Wrap
     }
@@ -155,7 +163,7 @@ public class ToppingMethods {
         American, Provolone, Cheddar, Swiss
     }
     public enum RegularToppingsType {
-        lettuce, peppers , onions, tomatoes, jalapeños, cucumbers, pickles, guacamole, mushrooms
+        lettuce, peppers , onions, tomatoes, jalapenos, cucumbers, pickles, guacamole, mushrooms
     }
     public enum SaucesType {
         mayo, mustard, ketchup, ranch, thousand_islands, vinaigrette

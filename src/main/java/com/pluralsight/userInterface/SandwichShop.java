@@ -7,6 +7,7 @@ public class SandwichShop {
 
     public static void main(String[] args) {
         boolean quit = false;
+        utilityMethods = new UtilityMethods();
         while (!quit) {
             System.out.println("Hello! Would you like to make an order?(Yes/No)");
             if (utilityMethods.getYesOrNo()) {

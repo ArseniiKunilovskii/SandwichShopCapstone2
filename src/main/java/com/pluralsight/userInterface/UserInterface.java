@@ -13,18 +13,21 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
-    private Order order = new Order();;
-    private Scanner scanner;
+    private final Scanner scanner;
     private UtilityMethods utilityMethods;
+    private final CustomSandwichMethods customSandwichMethods = new CustomSandwichMethods();
+
 
     public void display(){
         String choice;
         boolean quit = false;
+        utilityMethods = new UtilityMethods();
+        Order order = new Order();
 
         while (!quit){
-            System.out.println("What do you want to Order?");
+            System.out.println("\nWhat do you want to Order?");
             System.out.println("------------------------------");
-            System.out.println("1. Custom Sandwich");
+            System.out.println("1. Sandwich");
             System.out.println("2. Drink");
             System.out.println("3. Chips");
             System.out.println("------------------------------");
@@ -56,7 +59,7 @@ public class UserInterface {
     }
     public Item getSandwich() {
         int choice = -1;
-        System.out.println("What type of sandwich do you want? (1 or 2)");
+        System.out.println("\nWhat type of sandwich do you want? (1 or 2)");
         System.out.println("1. Custom Sandwich");
         System.out.println("2. Standard Sandwich");
         System.out.println("0. Cancel");
@@ -69,7 +72,7 @@ public class UserInterface {
             case 1:
                 return getCustomSandwich();
             case 2:
-                return getStandardSandwich();
+                return null;
             case 0:
                 return null;
             default:
@@ -81,7 +84,7 @@ public class UserInterface {
         int choice = -1;
         int amount = 0;
         ToppingMethods.ChipsType type = null;
-        System.out.println("What type of chips do you want?(1,2,3 or 0");
+        System.out.println("\nWhat type of chips do you want?(1,2,3 or 0");
         System.out.println("1. Lays");
         System.out.println("2. Doritos");
         System.out.println("3. Cheetos");
@@ -97,7 +100,7 @@ public class UserInterface {
             case 3 -> ToppingMethods.ChipsType.Cheetos;
             default -> type;
         };
-        System.out.println("How many chips " + type + " do you want?");
+        System.out.println("\nHow many chips " + type + " do you want?");
         System.out.println("Please enter any positive amount");
         while (amount<=0){
             amount = utilityMethods.getInt();
@@ -110,7 +113,8 @@ public class UserInterface {
         int amount = 0;
         String size = "";
         ToppingMethods.DrinkType type = null;
-        System.out.println("What type of drink do you want?(1-10 or 0");
+
+        System.out.println("\nWhat type of drink do you want?(1-10 or 0");
         System.out.println("1. Coca-Cola");
         System.out.println("2. DrPepper");
         System.out.println("3. Sprite");
@@ -143,7 +147,7 @@ public class UserInterface {
 
         choice = -1;
 
-        System.out.println("What size of your " + type + " do you want?");
+        System.out.println("\nWhat size of your " + type + " do you want?");
         System.out.println("1. Small");
         System.out.println("2. Medium");
         System.out.println("3. Large");
@@ -162,21 +166,23 @@ public class UserInterface {
             return null;
         }
 
-        System.out.println("How many " +size + " "+ type + " do you want?");
+        System.out.println("\nHow many " +size + " "+ type + " do you want?");
         System.out.println("Please enter any positive amount");
         while (amount<=0){
             amount = utilityMethods.getInt();
         }
+        System.out.println("Your "+ amount + " " +size + " "+ type +" has been added to the order.");
         return new Drink(amount,size,type);
     }
 
-    public Item getStandardSandwich(){
-
-    }
+//    public Item getStandardSandwich(){
+//
+//    }
 
     public Item getCustomSandwich(){
         int amount = 0;
         int size = 0;
+        boolean choice;
         ToppingMethods.BreadType breadType;
         ArrayList<Topping> toppings;
         boolean isToasted = false;
@@ -191,8 +197,14 @@ public class UserInterface {
         }
         toppings = CustomSandwichMethods.getToppings();
         isToasted = CustomSandwichMethods.getToastedChoice();
-
-        return new Sandwich(amount,size,breadType,toppings,isToasted);
+        System.out.println("Your sandwich will cost: $" + (ToppingMethods.getTotalToppingPrice(toppings,size)+CustomSandwichMethods.getPriceBasedOnSize(size)));
+        System.out.println("Do you want to add it to your order?(yes or no)");
+        choice = utilityMethods.getYesOrNo();
+        if (choice) {
+            return new Sandwich(amount, size, breadType, toppings, isToasted);
+        }else {
+            return null;
+        }
     }
 
 

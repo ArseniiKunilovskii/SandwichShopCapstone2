@@ -6,15 +6,15 @@ import java.util.ArrayList;
 
 public class CustomSandwichMethods {
 
-    static UtilityMethods utilityMethods;
+    private static final UtilityMethods utilityMethods = new UtilityMethods();
 
     public static int getSize(){
-        int choice = 0;
+        int choice = -1;
         int size = 0;
-        System.out.println("What size of your sandwich do you want?");
-        System.out.println("1. 4\"");
-        System.out.println("2. 8\"");
-        System.out.println("3. 12\"");
+        System.out.println("\nWhat size of your sandwich do you want?");
+        System.out.println("1. 4\" - $5.50");
+        System.out.println("2. 8\" - $7.00");
+        System.out.println("3. 12\" - $8.50");
         System.out.println("0. Exit");
 
         while (choice<0||choice>3){
@@ -30,11 +30,20 @@ public class CustomSandwichMethods {
         return size;
     }
 
+    public static double getPriceBasedOnSize(int size){
+        return switch (size) {
+            case 4 -> 5.5;
+            case 8 -> 7.0;
+            case 12 -> 8.5;
+            default -> 0;
+        };
+    }
+
     public static ToppingMethods.BreadType getBreadType(){
         int choice =-1;
         ToppingMethods.BreadType breadType;
 
-        System.out.println("What type of bread do you want");
+        System.out.println("\nWhat type of bread do you want");
         System.out.println("1. White");
         System.out.println("2. Wheat");
         System.out.println("3. Rye");
@@ -93,19 +102,18 @@ public class CustomSandwichMethods {
             toppings.add(new Sauce(isExtra, sauces));
         }
 
-        System.out.println("Do you want to add meat?(yes or no)");
+        System.out.println("Do you want to add sides?(yes or no)");
         choice = utilityMethods.getYesOrNo();
         if(choice) {
             ToppingMethods.Sides sides = ToppingMethods.getSides();
             isExtra = ToppingMethods.getExtra(String.valueOf(sides));
             toppings.add(new Sides(isExtra, sides));
         }
-
         return toppings;
     }
 
     public static boolean getToastedChoice(){
-        System.out.println("Do you want your sandwich to be toasted?(yes or no)");
+        System.out.println("\nDo you want your sandwich to be toasted?(yes or no)");
         return utilityMethods.getYesOrNo();
     }
 }
