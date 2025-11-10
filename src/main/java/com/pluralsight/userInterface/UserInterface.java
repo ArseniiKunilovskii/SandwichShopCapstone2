@@ -3,6 +3,7 @@ package com.pluralsight.userInterface;
 import com.pluralsight.items.Chips;
 import com.pluralsight.items.Drink;
 import com.pluralsight.items.Item;
+import com.pluralsight.items.Sandwich;
 import com.pluralsight.toppings.Topping;
 import com.pluralsight.utilitlyMethods.CustomSandwichMethods;
 import com.pluralsight.utilitlyMethods.ToppingMethods;
@@ -189,9 +190,9 @@ public class UserInterface {
             return null;
         }
         toppings = CustomSandwichMethods.getToppings();
+        isToasted = CustomSandwichMethods.getToastedChoice();
 
-
-
+        return new Sandwich(amount,size,breadType,toppings,isToasted);
     }
 
 

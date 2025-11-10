@@ -104,7 +104,7 @@ public class CustomSandwichMethods {
         return toppings;
     }
 
-    public boolean getToastedChoice(){
+    public static boolean getToastedChoice(){
         System.out.println("Do you want your sandwich to be toasted?(yes or no)");
         return utilityMethods.getYesOrNo();
     }
