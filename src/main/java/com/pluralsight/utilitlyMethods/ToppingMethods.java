@@ -22,6 +22,7 @@ public class ToppingMethods {
         System.out.println("6. Bacon");
 
         while (choice<0||choice>6){
+            System.out.println("Please enter number from 1 to 6");
             choice = utilityMethods.getInt();
         }
         meatType = switch (choice){
@@ -48,6 +49,7 @@ public class ToppingMethods {
         System.out.println("4. Swiss");
 
         while (choice<0||choice>4){
+            System.out.println("Please enter number from 1 to 4");
             choice = utilityMethods.getInt();
         }
         cheeseType = switch (choice){
@@ -77,6 +79,7 @@ public class ToppingMethods {
         System.out.println("9. mushrooms");
 
         while (choice<0||choice>9){
+            System.out.println("Please enter number from 1 to 9");
             choice = utilityMethods.getInt();
         }
         regularToppingsType = switch (choice){
@@ -108,6 +111,7 @@ public class ToppingMethods {
         System.out.println("6. vinaigrette");
 
         while (choice<0||choice>6){
+            System.out.println("Please enter number from 1 to 6");
             choice = utilityMethods.getInt();
         }
         saucesType = switch (choice){
@@ -132,6 +136,7 @@ public class ToppingMethods {
         System.out.println("2. sauce");
 
         while (choice<0||choice>2){
+            System.out.println("Please enter number 1 or 2");
             choice = utilityMethods.getInt();
         }
         sides = switch (choice){

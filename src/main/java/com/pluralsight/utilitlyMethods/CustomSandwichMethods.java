@@ -18,6 +18,7 @@ public class CustomSandwichMethods {
         System.out.println("0. Exit");
 
         while (choice<0||choice>3){
+            System.out.println("Please enter numbers from 0 to 3");
             choice = utilityMethods.getInt();
         }
         size = switch (choice){
@@ -51,6 +52,7 @@ public class CustomSandwichMethods {
         System.out.println("0. Exit");
 
         while (choice<0||choice>4){
+            System.out.println("Please enter numbers from 0 to 4");
             choice = utilityMethods.getInt();
         }
         breadType = switch (choice){
