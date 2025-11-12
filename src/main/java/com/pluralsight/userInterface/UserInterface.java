@@ -13,13 +13,12 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class UserInterface {
-    private final Scanner scanner;
     private UtilityMethods utilityMethods;
     private final CustomSandwichMethods customSandwichMethods = new CustomSandwichMethods();
 
 
     public void display(){
-        String choice;
+        int choice;
         boolean quit = false;
         utilityMethods = new UtilityMethods();
         Order order = new Order();
@@ -31,40 +30,45 @@ public class UserInterface {
             System.out.println("2. Drink");
             System.out.println("3. Chips");
             System.out.println("------------------------------");
-            System.out.println("4. Checkout");
+            System.out.println("4. View cart");
+            System.out.println("5. Checkout");
             System.out.println("0. Cancel Order");
-            choice = scanner.nextLine();
+            choice = utilityMethods.getInt();
             switch (choice){
-                case "1":
+                case 1:
                     order.addItem(getSandwich());
                     break;
-                case "2":
+                case 2:
                     order.addItem(getDrink());
                     break;
-                case "3":
+                case 3:
                     order.addItem(getChips());
                     break;
-                case "4":
+                case 4:
+                    order.printOrder();
+                    break;
+                case 5:
                     checkOut(order);
                     break;
-                case "0":
+                case 0:
                     cancelOrder();
                     quit = true;
                     break;
                 default:
-                    System.out.println("Please enter only numbers 0-4");
+                    System.out.println("Please enter only number 0-5");
                     break;
             }
         }
     }
     public Item getSandwich() {
         int choice = -1;
-        System.out.println("\nWhat type of sandwich do you want? (1 or 2)");
+        System.out.println("\nWhat type of sandwich do you want?");
         System.out.println("1. Custom Sandwich");
         System.out.println("2. Standard Sandwich");
         System.out.println("0. Cancel");
 
         while (choice<0||choice>2){
+            System.out.println("Please enter number from 0 to 2");
             choice = utilityMethods.getInt();
         }
 
@@ -84,13 +88,14 @@ public class UserInterface {
         int choice = -1;
         int amount = 0;
         ToppingMethods.ChipsType type = null;
-        System.out.println("\nWhat type of chips do you want?(1,2,3 or 0");
+        System.out.println("\nWhat type of chips do you want?");
         System.out.println("1. Lays");
         System.out.println("2. Doritos");
         System.out.println("3. Cheetos");
         System.out.println("0. Exit");
 
         while (choice<0||choice>3){
+            System.out.println("Please enter number from 0 to 3");
             choice = utilityMethods.getInt();
         }
 
@@ -114,7 +119,7 @@ public class UserInterface {
         String size = "";
         ToppingMethods.DrinkType type = null;
 
-        System.out.println("\nWhat type of drink do you want?(1-10 or 0");
+        System.out.println("\nWhat type of drink do you want?");
         System.out.println("1. Coca-Cola");
         System.out.println("2. DrPepper");
         System.out.println("3. Sprite");
@@ -128,6 +133,7 @@ public class UserInterface {
         System.out.println("0. Exit");
 
         while (choice>10 || choice<0){
+            System.out.println("Please enter number from 0 to 10");
             choice = utilityMethods.getInt();
         }
 
@@ -154,6 +160,7 @@ public class UserInterface {
         System.out.println("0. Exit");
 
         while (choice<0||choice>3){
+            System.out.println("Please enter number from 0 to 3");
             choice = utilityMethods.getInt();
         }
         size = switch (choice){
@@ -200,6 +207,8 @@ public class UserInterface {
         System.out.println("Your sandwich will cost: $" + (ToppingMethods.getTotalToppingPrice(toppings,size)+CustomSandwichMethods.getPriceBasedOnSize(size)));
         System.out.println("Do you want to add it to your order?(yes or no)");
         choice = utilityMethods.getYesOrNo();
+        System.out.println("How many those sandwiches do you want?");
+        amount = utilityMethods.getInt();
         if (choice) {
             return new Sandwich(amount, size, breadType, toppings, isToasted);
         }else {
@@ -207,17 +216,11 @@ public class UserInterface {
         }
     }
 
-
-
     public void cancelOrder(){
 
     }
     public void checkOut(Order order){
 
-    }
-
-    public UserInterface() {
-        scanner = new Scanner(System.in);
     }
 
 }

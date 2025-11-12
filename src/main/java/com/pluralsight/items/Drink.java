@@ -19,18 +19,27 @@ public class Drink extends Item{
 
     @Override
     public double getPrice() {
+        double price;
         if (size.equalsIgnoreCase("small")){
-            return 2.00;
+            price=2.00;
         }
         else if (size.equalsIgnoreCase("Medium")){
-            return 2.50;
+            price= 2.50;
         }else if (size.equalsIgnoreCase("Large")){
-            return 3.00;
+            price= 3.00;
         }else {
             System.out.println("Something went wrong, it is on us!");
-            return 0;
+            price= 0;
         }
+        return price*getAmount();
     }
+
+    @Override
+    public String toString() {
+        return String.format("%-2d %-8s %-15s - $%6.2f",
+                getAmount(), size, drinkType, getPrice());
+    }
+
 
     public String getSize() {
         return size;

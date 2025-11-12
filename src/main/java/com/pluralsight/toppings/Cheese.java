@@ -45,6 +45,10 @@ public class Cheese extends Topping{
         return cheeseType;
     }
 
+    public String getName() {
+        return cheeseType.toString();
+    }
+
     public void setCheeseType(ToppingMethods.CheeseType cheeseType) {
         this.cheeseType = cheeseType;
     }

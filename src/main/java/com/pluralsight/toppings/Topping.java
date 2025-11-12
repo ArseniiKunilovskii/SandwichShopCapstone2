@@ -16,4 +16,5 @@ public abstract class Topping {
     }
 
     public abstract double getPrice(int size);
+    public abstract String getName();
 }

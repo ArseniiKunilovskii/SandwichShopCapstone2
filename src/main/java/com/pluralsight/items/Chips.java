@@ -24,6 +24,13 @@ public class Chips extends Item{
 
     @Override
     public double getPrice() {
-        return 1.5;
+        return 1.5 * getAmount();
     }
+
+    @Override
+    public String toString() {
+        return String.format("%-2d %-8s %-15s - $%6.2f",
+                getAmount(), "bag", chipsType, getPrice());
+    }
+
 }
