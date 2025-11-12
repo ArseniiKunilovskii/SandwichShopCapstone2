@@ -5,6 +5,9 @@ public abstract class Item {
 
     public abstract double getPrice();
 
+    @Override
+    public abstract String toString();
+
     public Item(int amount) {
         this.amount = amount;
     }

@@ -37,7 +37,27 @@ public class Sandwich extends Item {
         }
         List<Double> prices = toppings.stream().map(topping -> topping.getPrice(size)).toList();
         total += prices.stream().reduce(0.0, (temp, num) -> temp+num);
-        return total;
+        return total*getAmount();
     }
+
+    @Override
+    public String toString() {
+        String toastedText = isToasted ? "Toasted" : "Not toasted";
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format("%-2d %d\" %-10s %-10s - $%6.2f",
+                getAmount(), size, breadType, toastedText, getPrice()));
+
+        for (Topping topping : toppings) {
+            String extraText = topping.isExtra() ? " (extra)" : "";
+
+            String toppingName = topping.getName();
+
+            sb.append(String.format("\n  - %s%s", toppingName, extraText));
+        }
+
+        return sb.toString();
+    }
+
 
 }

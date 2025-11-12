@@ -22,4 +22,7 @@ public class Sides extends Topping{
     public void setSides(ToppingMethods.Sides sides) {
         this.sides = sides;
     }
+    public String getName() {
+        return sides.toString();
+    }
 }

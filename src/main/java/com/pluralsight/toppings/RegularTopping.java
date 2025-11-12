@@ -22,4 +22,7 @@ public class RegularTopping extends Topping {
     public void setRegularToppingsType(ToppingMethods.RegularToppingsType regularToppingsType) {
         this.regularToppingsType = regularToppingsType;
     }
+    public String getName() {
+        return regularToppingsType.toString();
+    }
 }

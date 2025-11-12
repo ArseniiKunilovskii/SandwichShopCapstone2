@@ -22,4 +22,8 @@ public class Sauce extends Topping{
     public double getPrice(int size) {
         return 0;
     }
+
+    public String getName() {
+        return saucesType.toString();
+    }
 }

@@ -48,4 +48,8 @@ public class Meat extends Topping {
         }
         return 0;
     }
+
+    public String getName() {
+        return meatType.toString();
+    }
 }
