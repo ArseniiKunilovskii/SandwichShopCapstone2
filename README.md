@@ -43,17 +43,16 @@ Follow these steps to get your application running within IntelliJ IDEA:
 - Core Libraries: java.util, java.io (for ReceiptFileManager), and java.time (for timestamping receipts).
 
 ## Demo
+![Recording 2025-11-13 150134.gif](Recording%202025-11-13%20150134.gif)
 
-Include screenshots or GIFs that show your application in action. Use tools like [Giphy Capture](https://giphy.com/apps/giphycapture) to record a GIF of your application.
-
-![Application Screenshot](path/to/your/screenshot.png)
+![Screenshot 2025-11-13 151533.png](Screenshot%202025-11-13%20151533.png)
 
 ## Future Work
 
 Outline potential future enhancements or functionalities you might consider adding:
 
-- Additional feature to be developed.
-- Improvement of current functionalities.
+- Add cash counting.
+- Create items deletion.
 
 ## Resources
 
@@ -64,12 +63,11 @@ List resources such as tutorials, articles, or documentation that helped you dur
 
 ## Team Members
 
-- **Name 1** - Specific contributions or roles.
-- **Name 2** - Specific contributions or roles.
+- Arsenii Kunilovskii
 
 ## Thanks
 
 Express gratitude towards those who provided help, guidance, or resources:
 
-- Thank you to [Mentor's Name] for continuous support and guidance.
-- A special thanks to all teammates for their dedication and teamwork.
+- Thank you to Raymond for continuous support and guidance.
+- A special thanks to PotatoSensei.
