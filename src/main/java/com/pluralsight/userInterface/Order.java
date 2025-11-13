@@ -12,9 +12,15 @@ public class Order {
         if (items.isEmpty()){
             System.out.println("\nYou didn't order anything yet!");
         }else {
-            items.forEach(System.out::println);
+            System.out.println("==============Your Order==============");
+            for (int i = 0; i < items.size();i++){
+                if (items.get(i)!=null){
+                    System.out.println(items.get(i).toString());
+                }
+            }
+            System.out.println("Your total is $" + getTotal());
+            System.out.println("======================================");
         }
-        System.out.println("Your total is $" + getTotal());
     }
 
     public double getTotal(){

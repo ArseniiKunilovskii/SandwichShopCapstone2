@@ -4,7 +4,7 @@ import com.pluralsight.items.Chips;
 import com.pluralsight.items.Drink;
 import com.pluralsight.items.Item;
 import com.pluralsight.items.Sandwich;
-import com.pluralsight.toppings.Topping;
+import com.pluralsight.toppings.*;
 import com.pluralsight.utilitlyMethods.CustomSandwichMethods;
 import com.pluralsight.utilitlyMethods.ToppingMethods;
 import com.pluralsight.utilitlyMethods.UtilityMethods;
@@ -75,7 +75,7 @@ public class UserInterface {
             case 1:
                 return getCustomSandwich();
             case 2:
-                return null;
+                return getStandardSandwich();
             case 0:
                 return null;
             default:
@@ -115,7 +115,7 @@ public class UserInterface {
     public Item getDrink(){
         int choice = -1;
         int amount = 0;
-        String size = "";
+        String size;
         ToppingMethods.DrinkType type = null;
 
         System.out.println("\nWhat type of drink do you want?");
@@ -181,9 +181,56 @@ public class UserInterface {
         return new Drink(amount,size,type);
     }
 
-//    public Item getStandardSandwich(){
-//
-//    }
+    public Item getStandardSandwich(){
+        int choice = -1;
+        int amount = 0;
+        Sandwich sandwich;
+        ArrayList<Topping> toppings;
+
+        System.out.println("Please take a look at our Signature Sandwiches: ");
+        System.out.println("1. BLT\t- \t$10.50\n\t-8\" white bread\n\t-Bacon\n\t-Cheddar\n\t-Lettuce\n\t-Tomato\n\t-Ranch\n\t-Toasted");
+        System.out.println("2. Philly Cheese Steak\t- \t$10.50\n\t-8\" white bread\n\t-Steak\n\t-American Cheese\n\t-Peppers\n\t-Mayo\n\t-Toasted");
+        System.out.println("0. Exit");
+
+        while (choice<0||choice>3){
+            System.out.println("Please enter number from 0 to 3");
+            choice = utilityMethods.getInt();
+        }
+        if (choice == 0){
+            return null;
+        }
+
+        System.out.println("How many those sandwiches do you want?");
+        while (amount<=0){
+            amount = utilityMethods.getInt();
+        }
+        switch (choice){
+            case 1:
+                toppings = new ArrayList<>();
+                toppings.add(new Meat(false, ToppingMethods.MeatType.Bacon));
+                toppings.add(new Cheese(false,ToppingMethods.CheeseType.Cheddar));
+                toppings.add(new RegularTopping(false, ToppingMethods.RegularToppingsType.lettuce));
+                toppings.add(new RegularTopping(false, ToppingMethods.RegularToppingsType.tomatoes));
+                toppings.add(new Sauce(false, ToppingMethods.SaucesType.ranch));
+                sandwich = new  Sandwich(amount,
+                        8,
+                        ToppingMethods.BreadType.White,
+                        toppings,true);
+                break;
+            case 2:
+                toppings = new ArrayList<>();
+                toppings.add(new Meat(false,ToppingMethods.MeatType.Steak));
+                toppings.add(new Cheese(false, ToppingMethods.CheeseType.American));
+                toppings.add(new RegularTopping(false, ToppingMethods.RegularToppingsType.peppers));
+                toppings.add(new Sauce(false, ToppingMethods.SaucesType.mayo));
+                sandwich = new Sandwich(amount, 8, ToppingMethods.BreadType.White, toppings, true);
+                break;
+            default:
+                sandwich = null;
+                break;
+        }
+        return sandwich;
+    }
 
     public Item getCustomSandwich(){
         int amount = 0;
@@ -233,6 +280,7 @@ public class UserInterface {
             if(proceed){
                 double total = order.getTotal();
                 double tax = total * 0.05;
+                tax = (double) Math.round(tax * 100) /100;
                 String paymentType = "";
                 int choice = -1;
                 System.out.println("Your tax: $" + tax);
