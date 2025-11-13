@@ -48,6 +48,7 @@ public class UserInterface {
                     break;
                 case 5:
                     checkOut(order);
+                    quit = true;
                     break;
                 case 0:
                     cancelOrder();
@@ -169,7 +170,7 @@ public class UserInterface {
             default -> "";
         };
         if (choice==0){
-            return null;
+            return new Drink();
         }
 
         System.out.println("\nHow many " +size + " "+ type + " do you want?");
@@ -190,14 +191,10 @@ public class UserInterface {
         System.out.println("Please take a look at our Signature Sandwiches: ");
         System.out.println("1. BLT\t- \t$10.50\n\t-8\" white bread\n\t-Bacon\n\t-Cheddar\n\t-Lettuce\n\t-Tomato\n\t-Ranch\n\t-Toasted");
         System.out.println("2. Philly Cheese Steak\t- \t$10.50\n\t-8\" white bread\n\t-Steak\n\t-American Cheese\n\t-Peppers\n\t-Mayo\n\t-Toasted");
-        System.out.println("0. Exit");
 
-        while (choice<0||choice>3){
-            System.out.println("Please enter number from 0 to 3");
+        while (choice<1||choice>2){
+            System.out.println("Please enter number 1 or 2");
             choice = utilityMethods.getInt();
-        }
-        if (choice == 0){
-            return null;
         }
 
         System.out.println("How many those sandwiches do you want?");
@@ -226,8 +223,8 @@ public class UserInterface {
                 sandwich = new Sandwich(amount, 8, ToppingMethods.BreadType.White, toppings, true);
                 break;
             default:
-                sandwich = null;
-                break;
+                System.out.println("Something went wrong");
+                sandwich = new Sandwich();
         }
         return sandwich;
     }
@@ -242,11 +239,11 @@ public class UserInterface {
 
         size = CustomSandwichMethods.getSize();
         if(size == 0){
-            return null;
+            return new Sandwich();
         }
         breadType = CustomSandwichMethods.getBreadType();
         if (breadType == null){
-            return null;
+            return new Sandwich();
         }
         toppings = CustomSandwichMethods.getToppings();
         isToasted = CustomSandwichMethods.getToastedChoice();
@@ -258,7 +255,7 @@ public class UserInterface {
         if (choice) {
             return new Sandwich(amount, size, breadType, toppings, isToasted);
         }else {
-            return null;
+            return new Sandwich();
         }
     }
 

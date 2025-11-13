@@ -13,9 +13,9 @@ public class Order {
             System.out.println("\nYou didn't order anything yet!");
         }else {
             System.out.println("==============Your Order==============");
-            for (int i = 0; i < items.size();i++){
-                if (items.get(i)!=null){
-                    System.out.println(items.get(i).toString());
+            for (Item item : items) {
+                if (item != null) {
+                    System.out.println(item.toString());
                 }
             }
             System.out.println("Your total is $" + getTotal());

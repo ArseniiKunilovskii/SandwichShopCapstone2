@@ -17,10 +17,18 @@ public class Drink extends Item{
         this.drinkType = drinkType;
     }
 
+    public Drink() {
+        super(0);
+        size="null";
+    }
+
     @Override
     public double getPrice() {
         double price;
-        if (size.equalsIgnoreCase("small")){
+        if(size.equalsIgnoreCase("null")){
+            price= 0;
+        }
+        else if (size.equalsIgnoreCase("small")){
             price=2.00;
         }
         else if (size.equalsIgnoreCase("Medium")){

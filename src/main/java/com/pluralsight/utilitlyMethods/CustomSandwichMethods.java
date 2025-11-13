@@ -49,18 +49,16 @@ public class CustomSandwichMethods {
         System.out.println("2. Wheat");
         System.out.println("3. Rye");
         System.out.println("4. Wrap");
-        System.out.println("0. Exit");
 
-        while (choice<0||choice>4){
+        while (choice<1||choice>4){
             System.out.println("Please enter numbers from 0 to 4");
             choice = utilityMethods.getInt();
         }
         breadType = switch (choice){
-            case 1 -> ToppingMethods.BreadType.White;
             case 2 -> ToppingMethods.BreadType.Wheat;
             case 3 -> ToppingMethods.BreadType.Rye;
             case 4 -> ToppingMethods.BreadType.Wrap;
-            default -> null;
+            default -> ToppingMethods.BreadType.White;
         };
 
         return breadType;

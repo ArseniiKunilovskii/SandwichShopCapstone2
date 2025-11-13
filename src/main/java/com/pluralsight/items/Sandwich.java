@@ -20,43 +20,56 @@ public class Sandwich extends Item {
         this.isToasted = isToasted;
     }
 
+    public Sandwich() {
+        this.size = 0;
+    }
+
+
     @Override
     public double getPrice() {
         double total = 0;
-        switch (size){
-            case 4:
-                total+= 5.5;
-                break;
-            case 8:
-                total+=7;
+        if(size!=0) {
+            switch (size) {
+                case 4:
+                    total += 5.5;
+                    break;
+                case 8:
+                    total += 7;
 
-                break;
-            case 12:
-                total+=8.5;
-                break;
+                    break;
+                case 12:
+                    total += 8.5;
+                    break;
+            }
+            List<Double> prices = toppings.stream().map(topping -> topping.getPrice(size)).toList();
+            total += prices.stream().reduce(0.0, (temp, num) -> temp + num);
+            return total * getAmount();
+        }else {
+            return 0;
         }
-        List<Double> prices = toppings.stream().map(topping -> topping.getPrice(size)).toList();
-        total += prices.stream().reduce(0.0, (temp, num) -> temp+num);
-        return total*getAmount();
     }
 
     @Override
     public String toString() {
-        String toastedText = isToasted ? "Toasted" : "Not toasted";
+        if (size != 0) {
+            String toastedText = isToasted ? "Toasted" : "Not toasted";
 
-        StringBuilder sb = new StringBuilder();
-        sb.append(String.format("%-2d %d\" %-10s %-10s - $%6.2f",
-                getAmount(), size, breadType, toastedText, getPrice()));
+            StringBuilder sb = new StringBuilder();
+            sb.append(String.format("%-2d %d\" %-10s %-10s - $%6.2f",
+                    getAmount(), size, breadType, toastedText, getPrice()));
 
-        for (Topping topping : toppings) {
-            String extraText = topping.isExtra() ? " (extra)" : "";
+            for (Topping topping : toppings) {
+                String extraText = topping.isExtra() ? " (extra)" : "";
 
-            String toppingName = topping.getName();
+                String toppingName = topping.getName();
 
-            sb.append(String.format("\n  - %s%s", toppingName, extraText));
+                sb.append(String.format("\n  - %s%s", toppingName, extraText));
+            }
+
+            return sb.toString();
+        }else {
+            return "Item deleted";
         }
-
-        return sb.toString();
     }
 
 
