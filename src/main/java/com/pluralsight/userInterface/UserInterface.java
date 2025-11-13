@@ -10,7 +10,6 @@ import com.pluralsight.utilitlyMethods.ToppingMethods;
 import com.pluralsight.utilitlyMethods.UtilityMethods;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class UserInterface {
     private UtilityMethods utilityMethods;
@@ -220,7 +219,43 @@ public class UserInterface {
 
     }
     public void checkOut(Order order){
+        boolean proceed;
+        ReceiptFileManager recipFileManager = new ReceiptFileManager();
 
+        if (order.isEmpty()){
+            System.out.println("Your cart is empty!");
+        }
+        else{
+            System.out.println("Please check if order is correct:");
+            order.printOrder();
+            System.out.println("Do you want to continue?(yes/no)");
+            proceed = utilityMethods.getYesOrNo();
+            if(proceed){
+                double total = order.getTotal();
+                double tax = total * 0.05;
+                String paymentType = "";
+                int choice = -1;
+                System.out.println("Your tax: $" + tax);
+                System.out.println("Final total: $" +(tax+total));
+                System.out.println("Choose your payment option:");
+                System.out.println("1. Card");
+                System.out.println("2. Cash");
+                System.out.println("3. Coupons");
+                while (choice<0||choice>3) {
+                    choice = utilityMethods.getInt();
+                }
+                switch (choice){
+                    case 1 -> paymentType = "Card";
+                    case 2 -> paymentType = "Cash";
+                    case 3 -> paymentType = "Coupons";
+                }
+                System.out.println("Payment is proceeding...");
+                System.out.println("Payment successful!");
+                recipFileManager.saveReceipt(order, paymentType, tax);
+            }else {
+                System.out.println("Returning to main screen...");
+            }
+        }
     }
 
 }
