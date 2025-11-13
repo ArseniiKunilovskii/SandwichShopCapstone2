@@ -29,4 +29,11 @@ public class Order {
     public void addItem(Item item){
         items.add(item);
     }
+    public boolean isEmpty(){
+        return items.isEmpty();
+    }
+
+    public ArrayList<Item> getItems() {
+        return items;
+    }
 }
