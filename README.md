@@ -1,15 +1,22 @@
-# Project Title
+# SandwichShop
 
 ## Description of the Project
 
-Briefly describe what this Java console application does. Mention its purpose and who the intended users are. Explain the main functionality and what problems it aims to solve.
+This is a Java console application designed to simulate the point of sale (POS) system for "DELI-cious" , a custom sandwich shop. The system was developed to automate the order process, replacing the shop's previous paper-based system.
+
+The application is built using Object-Oriented Analysis and Design (OOAD), making use of abstract classes (Item, Topping) and inheritance to manage complex pricing and customization logic.
 
 ## User Stories
 
 List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
 
-- As a user, I want to be able to input my data, so that the application can process it accordingly.
-- As a user, I want to receive immediate feedback, so I can understand what to do next.
+- As a customer, I want to be able to start a New Order from the Home Screen and then be presented with options to Add Sandwich, Add Drink, Add Chips, Checkout, or Cancel Order so that I can assemble my full purchase.
+- As a customer, I want to be able to fully customize my Sandwich order by selecting the size (4", 8", 12"), bread type (white, wheat, rye, or wrap), and various toppings (Meats, Cheeses, Regular Toppings, Sauces, and Sides) with the option to have the sandwich toasted and add extras to premium toppings, so that I get exactly the sandwich I want
+- As a customer, I want to be able to Add Drink and Add Chips to my order, specifying the drink size and flavor or the chip type, so that I can purchase sides along with or instead of a sandwich.
+- As a customer, I want the application to display the full order details and the total cost upon checkout, and upon Confirmation, I want the order details to be saved to a receipt file named by the date and time (yyyyMMdd-hhmmss.txt) in a dedicated receipts folder, so I have a record of my purchase.
+- As a customer, I want to be able to Cancel Order from the Order Screen or the Checkout Screen, which should delete the current order and take me back to the Home Screen, so that I can abandon an order if needed.
+- As a customer, I want an option to order pre-configured Signature Sandwiches (like the BLT or Philly Cheese Steak) from the Order Screen, so that I can quickly select a popular item without customizing it from scratch.
+- As a customer, after selecting a Signature Sandwich, I want to be able to remove or add more toppings to the sandwich before adding it to my order, so that I can use the template as a starting point for my custom creation.
 
 ## Setup
 
@@ -33,7 +40,7 @@ Follow these steps to get your application running within IntelliJ IDEA:
 ## Technologies Used
 
 - Java: Mention the version you are using.
-- Any additional libraries or frameworks used in the project.
+- Core Libraries: java.util, java.io (for ReceiptFileManager), and java.time (for timestamping receipts).
 
 ## Demo
 
