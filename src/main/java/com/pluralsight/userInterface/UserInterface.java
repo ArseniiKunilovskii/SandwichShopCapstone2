@@ -11,11 +11,15 @@ import com.pluralsight.utilitlyMethods.UtilityMethods;
 
 import java.util.ArrayList;
 
+/**
+ * Manages the user interaction, displaying menus and handling the order process.
+ */
 public class UserInterface {
     private UtilityMethods utilityMethods;
-    private final CustomSandwichMethods customSandwichMethods = new CustomSandwichMethods();
 
-
+    /**
+     * Starts the main ordering loop and displays the main menu options.
+     */
     public void display(){
         int choice;
         boolean quit = false;
@@ -35,7 +39,10 @@ public class UserInterface {
             choice = utilityMethods.getInt();
             switch (choice){
                 case 1:
-                    order.addItem(getSandwich());
+                    Item sandwich = getSandwich();
+                    if (sandwich != null) {
+                        order.addItem(sandwich);
+                    }
                     break;
                 case 2:
                     order.addItem(getDrink());
@@ -60,6 +67,11 @@ public class UserInterface {
             }
         }
     }
+
+    /**
+     * Guides the user to choose between a custom or standard sandwich.
+     * @return The selected {@link Sandwich} item or {@code null} if canceled.
+     */
     public Item getSandwich() {
         int choice = -1;
         System.out.println("\nWhat type of sandwich do you want?");
@@ -72,18 +84,21 @@ public class UserInterface {
             choice = utilityMethods.getInt();
         }
 
-        switch (choice){
-            case 1:
-                return getCustomSandwich();
-            case 2:
-                return getStandardSandwich();
-            case 0:
-                return null;
-            default:
+        return switch (choice) {
+            case 1 -> getCustomSandwich();
+            case 2 -> getStandardSandwich();
+            case 0 -> null;
+            default -> {
                 System.out.println("Something went wrong");
-        }
-        return null;
+                yield null;
+            }
+        };
     }
+
+    /**
+     * Guides the user through selecting a type and amount of chips.
+     * @return The selected {@link Chips} item.
+     */
     public Item getChips(){
         int choice = -1;
         int amount = 0;
@@ -105,14 +120,25 @@ public class UserInterface {
             case 3 -> ToppingMethods.ChipsType.Cheetos;
             default -> type;
         };
+
+        if (choice == 0) {
+            // Return null or an indication the operation was canceled,
+            // but the current implementation proceeds to ask for amount if type is set.
+            return null;
+        }
+
         System.out.println("\nHow many chips " + type + " do you want?");
         System.out.println("Please enter any positive amount");
         while (amount<=0){
             amount = utilityMethods.getInt();
         }
         return new Chips(amount,type);
-
     }
+
+    /**
+     * Guides the user through selecting a type, size, and amount of drink.
+     * @return The selected {@link Drink} item. Returns a default/empty Drink if canceled.
+     */
     public Item getDrink(){
         int choice = -1;
         int amount = 0;
@@ -135,6 +161,10 @@ public class UserInterface {
         while (choice>10 || choice<0){
             System.out.println("Please enter number from 0 to 10");
             choice = utilityMethods.getInt();
+        }
+
+        if (choice == 0){
+            return new Drink();
         }
 
         type = switch (choice) {
@@ -182,6 +212,10 @@ public class UserInterface {
         return new Drink(amount,size,type);
     }
 
+    /**
+     * Guides the user through selecting and ordering one of the signature standard sandwiches.
+     * @return The selected {@link Sandwich} item.
+     */
     public Item getStandardSandwich(){
         int choice = -1;
         int amount = 0;
@@ -229,13 +263,17 @@ public class UserInterface {
         return sandwich;
     }
 
+    /**
+     * Guides the user through the process of creating a custom sandwich using {@link CustomSandwichMethods}.
+     * @return The custom {@link Sandwich} item or an empty/deleted {@link Sandwich} if canceled or not confirmed.
+     */
     public Item getCustomSandwich(){
-        int amount = 0;
-        int size = 0;
+        int amount;
+        int size;
         boolean choice;
         ToppingMethods.BreadType breadType;
         ArrayList<Topping> toppings;
-        boolean isToasted = false;
+        boolean isToasted;
 
         size = CustomSandwichMethods.getSize();
         if(size == 0){
@@ -259,9 +297,19 @@ public class UserInterface {
         }
     }
 
+    /**
+     * Handles the logic for canceling the current order.
+     */
     public void cancelOrder(){
-
+        // In a real application, this would clear the order object or confirm cancellation.
+        // As the current implementation exits the loop, this serves as a placeholder.
     }
+
+    /**
+     * Handles the checkout process: verifies the order, calculates tax and total,
+     * processes payment type, and saves the receipt.
+     * @param order The current {@link Order} to be processed.
+     */
     public void checkOut(Order order){
         boolean proceed;
         ReceiptFileManager recipFileManager = new ReceiptFileManager();
@@ -302,5 +350,4 @@ public class UserInterface {
             }
         }
     }
-
 }

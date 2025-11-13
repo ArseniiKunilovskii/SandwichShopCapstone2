@@ -5,10 +5,19 @@ import com.pluralsight.toppings.Topping;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+/**
+ * Provides static utility methods for handling topping-related tasks,
+ * such as getting user selection for various topping types and calculating total topping prices.
+ */
 public class ToppingMethods {
 
     private static final UtilityMethods utilityMethods = new UtilityMethods();
 
+    /**
+     * Prompts the user to select a meat type and returns the choice.
+     * @return The selected {@link MeatType}.
+     * @throws IllegalStateException if an unexpected choice is made (should be caught by the loop).
+     */
     public static MeatType getMeatType(){
         int choice = -1;
         MeatType meatType;
@@ -38,6 +47,11 @@ public class ToppingMethods {
         return meatType;
     }
 
+    /**
+     * Prompts the user to select a cheese type and returns the choice.
+     * @return The selected {@link CheeseType}.
+     * @throws IllegalStateException if an unexpected choice is made (should be caught by the loop).
+     */
     public static CheeseType getCheeseType(){
         int choice = -1;
         CheeseType cheeseType;
@@ -63,6 +77,11 @@ public class ToppingMethods {
         return cheeseType;
     }
 
+    /**
+     * Prompts the user to select a regular topping (vegetable/condiment) type and returns the choice.
+     * @return The selected {@link RegularToppingsType}.
+     * @throws IllegalStateException if an unexpected choice is made (should be caught by the loop).
+     */
     public static RegularToppingsType getRegularToppingsType(){
         int choice = -1;
         RegularToppingsType regularToppingsType;
@@ -98,6 +117,11 @@ public class ToppingMethods {
         return regularToppingsType;
     }
 
+    /**
+     * Prompts the user to select a sauce type and returns the choice.
+     * @return The selected {@link SaucesType}.
+     * @throws IllegalStateException if an unexpected choice is made (should be caught by the loop).
+     */
     public static SaucesType getSaucesType(){
         int choice = -1;
         SaucesType saucesType;
@@ -127,6 +151,11 @@ public class ToppingMethods {
         return saucesType;
     }
 
+    /**
+     * Prompts the user to select a side item type and returns the choice.
+     * @return The selected {@link Sides}.
+     * @throws IllegalStateException if an unexpected choice is made (should be caught by the loop).
+     */
     public static Sides getSides(){
         int choice = -1;
         Sides sides;
@@ -148,37 +177,80 @@ public class ToppingMethods {
 
         return sides;
     }
+
+    /**
+     * Prompts the user to confirm if they want an extra portion of a specified topping.
+     * @param topping The name of the topping (e.g., "Steak").
+     * @return {@code true} if the user selects yes for extra, {@code false} otherwise.
+     */
     public static boolean getExtra(String topping){
         System.out.println("Do you want extra " + topping+"? (yes or no)");
         return utilityMethods.getYesOrNo();
     }
 
+    /**
+     * Calculates the total price of all toppings in a list for a given sandwich size.
+     * @param toppings An {@link ArrayList} of {@link Topping} objects.
+     * @param size The size of the sandwich in inches.
+     * @return The aggregated price of all toppings.
+     */
     public static double getTotalToppingPrice(ArrayList<Topping> toppings, int size){
         ArrayList<Double> prices = toppings.stream().map(topping -> topping.getPrice(size)).collect(Collectors.toCollection(ArrayList::new));
         return prices.stream().reduce(0.0, Double::sum);
     }
 
+    /**
+     * Enum representing the available types of bread for a sandwich.
+     */
     public enum BreadType {
         White, Wheat, Rye, Wrap
     }
+
+    /**
+     * Enum representing the available types of meat toppings.
+     */
     public enum MeatType {
         Steak, Ham, Salami, RoastBeef, Chicken, Bacon
     }
+
+    /**
+     * Enum representing the available types of cheese toppings.
+     */
     public enum CheeseType {
         American, Provolone, Cheddar, Swiss
     }
+
+    /**
+     * Enum representing the available regular (non-meat, non-cheese) toppings.
+     */
     public enum RegularToppingsType {
         lettuce, peppers , onions, tomatoes, jalapenos, cucumbers, pickles, guacamole, mushrooms
     }
+
+    /**
+     * Enum representing the available sauce types.
+     */
     public enum SaucesType {
         mayo, mustard, ketchup, ranch, thousand_islands, vinaigrette
     }
+
+    /**
+     * Enum representing the available side items (conceptually treated as toppings here).
+     */
     public enum Sides {
         au_jus, sauce
     }
+
+    /**
+     * Enum representing the available drink types.
+     */
     public enum DrinkType {
         Coca_Cola, DrPepper, Sprite, Pepsi, Diet_Coke, Mountain_Dew, Coke_Zero, Diet_Pepsi, Fanta, Ginger_Ale
     }
+
+    /**
+     * Enum representing the available chip types.
+     */
     public enum ChipsType {
         Lays, Doritos, Cheetos
     }

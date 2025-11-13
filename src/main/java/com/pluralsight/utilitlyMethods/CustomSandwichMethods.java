@@ -4,13 +4,21 @@ import com.pluralsight.toppings.*;
 
 import java.util.ArrayList;
 
+/**
+ * Provides static utility methods for handling the creation process of a custom Sandwich,
+ * including collecting size, bread type, toppings, and calculating the base price.
+ */
 public class CustomSandwichMethods {
 
     private static final UtilityMethods utilityMethods = new UtilityMethods();
 
+    /**
+     * Prompts the user to select the size of the sandwich and returns the size in inches.
+     * @return The size of the sandwich (4, 8, or 12). Returns 0 if the user exits.
+     */
     public static int getSize(){
         int choice = -1;
-        int size = 0;
+        int size;
         System.out.println("\nWhat size of your sandwich do you want?");
         System.out.println("1. 4\" - $5.50");
         System.out.println("2. 8\" - $7.00");
@@ -31,6 +39,11 @@ public class CustomSandwichMethods {
         return size;
     }
 
+    /**
+     * Determines the base price of the sandwich based solely on its size.
+     * @param size The size of the sandwich in inches (4, 8, or 12).
+     * @return The base price of the sandwich. Returns 0 for invalid size.
+     */
     public static double getPriceBasedOnSize(int size){
         return switch (size) {
             case 4 -> 5.5;
@@ -40,6 +53,10 @@ public class CustomSandwichMethods {
         };
     }
 
+    /**
+     * Prompts the user to select the type of bread for the sandwich.
+     * @return The selected {@link ToppingMethods.BreadType}.
+     */
     public static ToppingMethods.BreadType getBreadType(){
         int choice =-1;
         ToppingMethods.BreadType breadType;
@@ -63,10 +80,16 @@ public class CustomSandwichMethods {
 
         return breadType;
     }
+
+    /**
+     * Guides the user through selecting all types of toppings (meat, cheese, regular, sauce, sides)
+     * and whether they want them extra.
+     * @return An {@link ArrayList} of selected {@link Topping} objects.
+     */
     public static ArrayList<Topping> getToppings(){
-        boolean choice = true;
+        boolean choice;
         ArrayList<Topping> toppings = new ArrayList<>();
-        boolean isExtra = false;
+        boolean isExtra;
 
         System.out.println("Do you want to add meat?(yes or no)");
         choice = utilityMethods.getYesOrNo();
@@ -112,6 +135,10 @@ public class CustomSandwichMethods {
         return toppings;
     }
 
+    /**
+     * Prompts the user to select whether the sandwich should be toasted.
+     * @return {@code true} if the sandwich should be toasted, {@code false} otherwise.
+     */
     public static boolean getToastedChoice(){
         System.out.println("\nDo you want your sandwich to be toasted?(yes or no)");
         return utilityMethods.getYesOrNo();

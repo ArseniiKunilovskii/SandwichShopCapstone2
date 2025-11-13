@@ -10,7 +10,16 @@ import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
+/**
+ * Manages the saving of order receipts to a file.
+ */
 public class ReceiptFileManager {
+    /**
+     * Saves a detailed receipt of the order to a text file. The file name is based on the current date and time.
+     * @param order The {@link Order} to be saved.
+     * @param paymentType The method of payment used (e.g., "Card", "Cash").
+     * @param tax The calculated tax amount for the order.
+     */
     public void saveReceipt(Order order, String paymentType,double tax) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd-hhmmss");
         LocalDateTime now = LocalDateTime.now();
