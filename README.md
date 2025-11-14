@@ -6,6 +6,8 @@ This is a Java console application designed to simulate the point of sale (POS) 
 
 The application is built using Object-Oriented Analysis and Design (OOAD), making use of abstract classes (Item, Topping) and inheritance to manage complex pricing and customization logic.
 
+[UML class.pdf](UML%20class.pdf)
+
 ## User Stories
 
 List the user stories that guided the development of your application. Format these stories as: "As a [type of user], I want [some goal] so that [some reason]."
